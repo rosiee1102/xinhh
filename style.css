@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+:root {
+  --black: #211e32;
+  --dark: #2a2f42;
+  --green: #5afe72;
+  --white: #ffffff;
+  --purple: #9a3bba;
+  --danger: #fe4e56;
+  --yellow: #fbff22;
+  --rotate: 0deg;
+}
+@property --rotate{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: true;
+}
+body {
+  min-height: 100vh;
+  background: var(--black);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  position: relative;
+  background: var(--dark);
+  width: 300px;
+  height: 450px;
+  padding: 3px;
+  border-radius: 5px;
+  margin: 50px;
+}
+.card::after,
+.card::before {
+  position: absolute;
+  width: 104%;
+  height: 102%;
+  content: "";
+  background-image: linear-gradient(var(--rotate),var(--purple), var(--danger));
+  border-radius: 6px;
+  z-index: -1;
+  left: -2%;
+  top: -1%;
+  opacity: 0;
+  transition:  opacity 0.5s;
+}
+.card::after {
+  filter: blur(40px);
+}
+.card:hover::after,
+.card:hover::before {
+  opacity: 1;
+  animation: spin 1.5s linear infinite;
+}
+@keyframes spin {
+  0%{
+    --rotate: 0deg;
+  } 100% {
+    --rotate: 460deg;
+  }
+}
+.card img:nth-child(1)
+{
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+  width: 96%;
+  height: 96%;
+  object-fit: cover;
+  border-radius: 6%;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+.card:hover img:nth-child(1)
+{
+  opacity: 0;
+}
+.card img:nth-child(2)
+{
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  width: 120%;
+  transform: translateX(-25%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.card:hover img:nth-child(2)
+{
+  opacity: 1;
+}
+.content {
+  position: absolute;
+  top: 70%;
+  left: -10px;
+  color: var(--white);
+  font-size: 40px;
+  rotate: -10deg;
+  text-shadow: 0 0 10px var(--danger);
+  transition: 0.5s;
+  font-family: "Sacramento", cursive;
+}
+.card:hover .content {
+  color: var(--yellow);
+  text-shadow: 0 0 10px var(--purple);
+}
+.card1:hover {
+  background-color: transparent;
+}
